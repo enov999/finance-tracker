@@ -1,6 +1,7 @@
-database = []
+# Using a list to store transactions temporarily before adding file storage
+database = [] 
 
-def addTransaction(amount, description, date):
+def add_Transaction(amount: float, description: str, date: str):
     transaction = {
         "amount": amount,
         "description": description,
@@ -9,37 +10,39 @@ def addTransaction(amount, description, date):
     database.append(transaction)
     print("Transaction added successfully.")
     
-
-def viewTransactions():
+def view_Transactions():
     print("Viewing all transactions...")
     for transaction in database:
         print(f"Amount: {transaction['amount']}, Description: {transaction['description']}, Date: {transaction['date']}")
+        print("-----------------------------")
+    total = sum(transaction['amount'] for transaction in database) # Calculating the total amount of all transactions
+    print(f"Total: {total}")
 
-def openMenu(option):
+def open_Menu(option): 
     match option:
         case "addTransaction":
             print("Adding a new transaction...")
             amount = float(input("Enter transaction amount:\n"))
             description = input("Enter transaction description:\n")
             date = input("Enter transaction date (DD/MM/YYYY):\n")
-            addTransaction(amount, description, date)
+            add_Transaction(amount, description, date)
         case "viewTransactions":
-            viewTransactions()
+            view_Transactions()
         case "exit":
             exit()
 
 
-def prompt():
+def prompt(): # Repeatedly prompts the user for an option until they choose to exit
     option = input("Enter an option:\n1. Add a transaction\n2. View all transactions\n3. Exit the program\n")
 
     match option:
         case "1":
-            openMenu("addTransaction")
+            open_Menu("add_Transaction")
             prompt()
         case "2":
-            openMenu("viewTransactions")
+            open_Menu("viewTransactions")
             prompt()
         case "3":
-            openMenu("exit")
+            open_Menu("exit")
 
 prompt()
