@@ -1,0 +1,11 @@
+{
+    "income": 1000.0,
+    "transactions": [
+        {
+            "amount": 500.0,
+            "description": "Babysitting",
+            "date": "20/6/26",
+            "category": "Work"
+        }
+    ]
+}
