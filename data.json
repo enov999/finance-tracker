@@ -6,6 +6,12 @@
             "description": "Babysitting",
             "date": "20/6/26",
             "category": "Work"
+        },
+        {
+            "amount": -20.0,
+            "description": "Train ticket",
+            "date": "21/6/2026",
+            "category": "Transport"
         }
     ]
 }

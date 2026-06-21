@@ -3,10 +3,11 @@
 A  Python CLI project that tracks income and expenses.
 
 ## Features
-- Add transactions
+- Add/remove transactions
 - View all transactions
 - Simple menu system
 - Saves data to JSON file
+- Graphical visualisation using matplotlib
 
 ## What I used
 - Python
@@ -14,5 +15,4 @@ A  Python CLI project that tracks income and expenses.
 
 ## Future improvements
 - Export to file (Spending report)
-- Graphs
 - Monthly breakdown
