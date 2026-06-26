@@ -12,6 +12,12 @@
             "description": "Train ticket",
             "date": "21/6/2026",
             "category": "Transport"
+        },
+        {
+            "amount": -10.0,
+            "description": "Lunch",
+            "date": "26/06/2026",
+            "category": "Food"
         }
     ]
 }

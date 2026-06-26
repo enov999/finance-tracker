@@ -1,6 +1,6 @@
 import json
 import matplotlib.pyplot as plt
-
+import csv
 
 dataFile = "data.json"
 
@@ -73,6 +73,15 @@ def removeTransaction(index: int):
         print("Invalid transaction index.")
     returnToMenu()
 
+def exportToCSV():
+    print("Exporting transcations...")
+    with open('transactions.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Amount', 'Description', 'Date', 'Category'])
+        for transaction in transactionsList:
+            writer.writerow([transaction['amount'], transaction['description'], transaction['date'], transaction['category']])
+    print("Transactions exported to transactions.csv successfully.")
+
 def viewTransactions():
     print("Viewing all transactions...")
     if transactionsList == []:
@@ -82,8 +91,14 @@ def viewTransactions():
 
     for transaction in transactionsList:
         print(f"Amount: {transaction['amount']}, Description: {transaction['description']}, Date: {transaction['date']}, Category: {transaction['category']}")
+    exportChoice = input("Would you like to export these transactions to a CSV file? (y/n)\n")
+    if exportChoice.lower() == "y":
+        exportToCSV()
+        returnToMenu()
+    else:
+        returnToMenu()
 
-    returnToMenu()
+
 
 def viewSummary():
     print("Calculating summary...")
