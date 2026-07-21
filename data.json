@@ -8,16 +8,28 @@
             "category": "Work"
         },
         {
-            "amount": -20.0,
-            "description": "Train ticket",
-            "date": "21/6/2026",
-            "category": "Transport"
+            "amount": 10.0,
+            "description": "Uber eats",
+            "date": "21/07/2026",
+            "category": "Food"
+        },
+        {
+            "amount": -50.0,
+            "description": "Weekly Shop",
+            "date": "21/07/2026",
+            "category": "Shopping"
+        },
+        {
+            "amount": 70.0,
+            "description": "Car washing",
+            "date": "21/07/2026",
+            "category": "General"
         },
         {
             "amount": -10.0,
-            "description": "Lunch",
-            "date": "26/06/2026",
-            "category": "Food"
+            "description": "Train ticket",
+            "date": "21/07/26",
+            "category": "Transport"
         }
     ]
 }

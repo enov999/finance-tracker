@@ -52,26 +52,36 @@ def visualiseTransactions():
     plt.show()
     returnToMenu()
 
-def addTransaction(amount: float, description: str, date: str, category: str = "General"):
-    transaction = {
-        "amount": amount,
-        "description": description,
-        "date": date,
-        "category": category
-    }
-    transactionsList.append(transaction)
-    saveData()
-    print("Transaction added successfully.")
+def addTransaction(amount: float, description: str, date: str, category: str = "General"): 
+    transaction = { "amount": amount, "description": description, "date": date, "category": category } 
+    transactionsList.append(transaction) 
+    saveData() 
+    print("Transaction added successfully.") 
     returnToMenu()
 
-def removeTransaction(index: int):
-    if 0 <= index < len(transactionsList):
-        transactionsList.pop(index)
-        saveData()
-        print("Transaction removed successfully.")
-    else:
-        print("Invalid transaction index.")
-    returnToMenu()
+def removeTransaction():
+    if not transactionsList:
+                 print("No transactions to remove.")
+                 returnToMenu()
+                 return
+    for i, transaction in enumerate(transactionsList):  # Enumerate gives us the index alongside each transaction
+        print(f"{i + 1}. Amount: {transaction['amount']}, Description: {transaction['description']}, Date: {transaction['date']}, Category: {transaction['category']}")
+    
+    choice = input("Enter the number of the transaction to remove (or press Enter to cancel):\n")
+    if choice == "":
+        returnToMenu()
+        return
+    
+    index = int(choice) - 1  # Convert to zero-based index to match the list
+    if index < 0 or index >= len(transactionsList):
+        print("Invalid selection.")
+        returnToMenu()
+        return
+    
+    removed = transactionsList.pop(index)  # Remove the transaction at the chosen index
+    saveData()
+    print(f"Removed: {removed['description']} ({removed['amount']})")
+    returnToMenu()  
 
 def exportToCSV():
     print("Exporting transcations...")
@@ -122,12 +132,15 @@ def openMenu(option):
         case "addTransaction":
             print("Adding a new transaction...")
             entryType = input("Is this income or an expense? (i/e)\n")
-            if entryType != "i" and entryType != "e":
+            if entryType not in ("i","e"):
                 print("Invalid entry type. Please enter 'i' or 'e'.")
                 returnToMenu()
                 return
-
-            amount = float(input("Enter transaction amount:\n"))
+            try:
+                amount = float(input("Enter transaction amount:\n"))
+            except ValueError:
+                print("Invalid input. Please enter a numeric value for the amount.")
+                returnToMenu()
             if amount < 0:
                 print("Invalid transaction amount. Please enter a positive value.")
                 returnToMenu()
@@ -142,6 +155,8 @@ def openMenu(option):
             if category == "":
                 category = "General"
             addTransaction(amount, description, date, category)
+        case "removeTransaction":
+            removeTransaction()
         case "viewTransactions":
             viewTransactions()
         case "viewSummary":
